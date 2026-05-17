@@ -2,23 +2,23 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Deep Forcing: Training-Free Long Video Generation with Deep Sink and Participative Compression</title>
+    <title>WorldKV: Efficient World Memory with World Retrieval and Compression</title>
 
 
     <meta
-        content="Deep Forcing: Training-Free Long Video Generation with Deep Sink and Participative Compression"
+        content="WorldKV: Efficient World Memory with World Retrieval and Compression"
         name="description" />
     <meta
-        content="Deep Forcing: Training-Free Long Video Generation with Deep Sink and Participative Compression"
+        content="WorldKV: Efficient World Memory with World Retrieval and Compression"
         property="og:title" />
     <meta
-        content="Deep Forcing: Training-Free Long Video Generation with Deep Sink and Participative Compression"
+        content="WorldKV: Efficient World Memory with World Retrieval and Compression"
         property="og:description" />
     <meta
-        content="Deep Forcing: Training-Free Long Video Generation with Deep Sink and Participative Compression"
+        content="WorldKV: Efficient World Memory with World Retrieval and Compression"
         property="twitter:title" />
     <meta
-        content="Deep Forcing: Training-Free Long Video Generation with Deep Sink and Participative Compression"
+        content="WorldKV: Efficient World Memory with World Retrieval and Compression"
         property="twitter:description" />
     <meta property="og:type" content="website" />
     <meta content="summary_large_image" name="twitter:card" />
@@ -73,15 +73,16 @@
             <nav class="main-nav">
                 <ul class="nav-links">
                     <li><a href="#Teaser">Teaser</a></li>
+                    <li><a href="#Introduction">Introduction</a></li>
                     <li><a href="#Motivation">Motivation</a></li>
                     <li><a href="#Methods">Methods</a></li>
                     <li><a href="#visual-representation-alignment">Qualitative</li>
                     <li><a href="#comparison">Comparison</a></li>
-                    <li><a href="#ablation-studies">Ablation</a></li>
-                    <li><a href="#interactive-prompting">Interactive</a></li>
-                    <li><a href="#world-model">World Models</a></li>
-                    <li><a href="#causal-forcing">Causal Forcing</a></li>
-                    <!-- <li><a href="#citation">Citation</a></li> -->
+                    <!-- <li><a href="#ablation-studies">Ablation</a></li> -->
+                    <li><a href="#worldkvfullkv">Lost In the Middle</a></li>
+                    <!-- <li><a href="#world-model">World Models</a></li> -->
+                    <li><a href="#inspatio-world">Inspatio</a></li>
+                    <li><a href="#citation">Citation</a></li>
                 </ul>
             </nav>
         </div>
@@ -93,28 +94,35 @@
                 <div class="title-flex">
                     </video>
                     <div class="title-text-block">
-                        <h1 class="title"><span class="gradient-text">Deep Forcing</span>: Training-Free Long Video Generation<span class="title-break"></span> with Deep Sink and Participative Compression</h1>
-                        <h1 class="subtitle">ICML 2026</h1>
+                        <h1 class="title"><span class="gradient-text">WorldKV</span>: Efficient World Memory with <span class="title-break"></span> World Retrieval and Compression</h1>
+                        <h1 class="subtitle">arxiv 2026</h1>
                     </div>
                 </div>
             </div>
             <div class="author-line">
-                <a href="https://yj-142150.github.io/jungyi/" target="_blank" class="author-text">Jung Yi</a>
-                <span class="author-divider">·</span>
-                <a href="https://scholar.google.com/citations?user=7cyLEQ0AAAAJ&hl=en/" target="_blank" class="author-text">Wooseok Jang</a>
-                <span class="author-divider">·</span>
-                <a href="https://openreview.net/profile?id=~Paul_Hyunbin_Cho1" target="_blank" class="author-text">Paul Hyunbin Cho</a>
-                <span class="author-divider">·</span>
-                <a href="https://nam-jisu.github.io/" target="_blank" class="author-text">Jisu Nam</a>
-                <span class="author-divider">·</span>
-                <a href="https://yoon-heez.github.io/" target="_blank" class="author-text">Heeji Yoon</a>
-                <span class="author-divider">·</span>
-                <a href="https://cvlab.kaist.ac.kr/" target="_blank" class="author-text">Seungryong Kim</a>
+                <div class="author-line-row">
+                    <a href="https://yj-142150.github.io/jungyi/" target="_blank" class="author-text">Jung Yi<sup class="affiliation-mark">1</sup></a>
+                    <span class="author-divider">·</span>
+                    <a href="https://github.com/kwjames98/" target="_blank" class="author-text">Minjae Kim<sup class="affiliation-mark">1</sup></a>
+                    <span class="author-divider">·</span>
+                    <a href="https://openreview.net/profile?id=~Paul_Hyunbin_Cho1" target="_blank" class="author-text">Paul Hyunbin Cho<sup class="affiliation-mark">1</sup></a>
+                    <span class="author-divider">·</span>
+                    <a href="https://woo1726.github.io/" target="_blank" class="author-text">Wooseok Jang<sup class="affiliation-mark">1</sup></a>
+                </div>
+                <div class="author-line-row">
+                    <a href="https://sangdooyun.github.io/" target="_blank" class="author-text">Sangdoo Yun<sup class="affiliation-mark">2</sup></a>
+                    <span class="author-divider">·</span>
+                    <a href="https://cvlab.kaist.ac.kr/" target="_blank" class="author-text">Seungryong Kim<sup class="affiliation-mark">1</sup></a>
+                </div>
             </div>
 
-            <div class="base-row author-row">
+            <div class="base-row author-row affiliation-row">
                 <div class="base-col author-col affiliations">
-                    KAIST AI &nbsp;&nbsp;
+                    <sup class="affiliation-mark">1</sup> KAIST AI
+                    <br>
+                </div>
+                <div class="base-col author-col affiliations">
+                    <sup class="affiliation-mark">2</sup> Naver AI
                     <br>
                 </div>
             </div>
@@ -139,48 +147,56 @@
 
     <main class="main-content">
         <div class="container">
-            <div class="new-notice">
+            <!-- <div class="new-notice">
                 <strong>New!</strong> Check out Deep Forcing on Interactive Prompting, World Models &amp; Causal Forcing!
-            </div>
+            </div> -->
             <div> </div>
             <div id="Teaser" class="base-row section">
                 <h2>Teaser</h2>
             </div>
 
-            <div class="mini-tldr">
+            <!-- <div class="mini-tldr">
                 <p><strong>All videos, except <b>'Interactive Prompting' & 'World Models'</b>, were generated from a single prompt, with no re-caching, and are shown at 1× speed.</strong></p>
-            </div>
+            </div> -->
 
             <div class="image-container">
                 <div class="video-grid subsection-grid">
 
                     <div class="video-item">
-                    <div class="video-title">Rolling Forcing</div>
+                    <div class="video-title">Full KV</div>
                     <video
                         class="video-player"
-                        src="videos/roll_city.mp4"
+                        src="world_videos/dynamic/04_RLWSRL90_245_full.mp4"
                         autoplay
                         loop
                         muted
                         playsinline
-                        data-prompt="A stylish woman strolls down a bustling Tokyo street, the warm glow of neon lights and animated city signs casting vibrant reflections. She wears a sleek black leather jacket paired with a flowing red dress and black boots, her black purse slung over her shoulder. Sunglasses perched on her nose and a bold red lipstick add to her confident, casual demeanor. The street is damp and reflective, creating a mirror-like effect that enhances the colorful lights and shadows. Pedestrians move about, adding to the lively atmosphere. The scene is captured in a dynamic medium shot with the woman walking slightly to one side, highlighting her graceful strides."
+                        data-metrics-step-frames="12"
+                        data-metrics-fps="16"
+                        data-kv-vram-series="3.4 GB, 6.8 GB, 10.2 GB, 13.6 GB, 17.0 GB, 20.4 GB, 23.8 GB, 27.2 GB, 30.6 GB, 34.0 GB, 37.4 GB, 40.8 GB, 44.2 GB, 47.6 GB, 51.0 GB, 54.4 GB, 57.8 GB, 61.2 GB, 64.6 GB, 68.0 GB"
+                        data-throughput-series="8.9 fps, 8.7 fps, 8.5 fps, 8.4 fps, 8.3 fps, 8.1 fps, 8.0 fps, 8.0 fps, 7.8 fps, 7.7 fps, 7.6 fps, 7.5 fps, 7.4 fps, 7.3 fps, 7.2 fps, 7.1 fps, 7.0 fps, 6.9 fps, 6.9 fps, 6.7 fps, 6.6 fps, 6.6 fps, 6.5 fps, 6.4 fps, 6.3 fps, 6.3 fps, 6.2 fps, 6.2 fps, 6.1 fps, 6.0 fps, 6.0 fps, 5.9 fps, 5.8 fps, 5.8 fps, 5.7 fps, 5.6 fps, 5.6 fps, 5.5 fps, 5.5 fps, 5.4 fps, 5.4 fps, 5.3 fps, 5.2 fps, 5.2 fps, 5.2 fps, 5.1 fps, 5.1 fps, 5.0 fps, 5.0 fps, 4.9 fps, 4.9 fps, 4.8 fps, 4.8 fps, 4.8 fps, 4.7 fps, 4.7 fps, 4.6 fps, 4.6 fps, 4.6 fps, 4.5 fps, 4.5 fps, 4.4 fps, 4.4 fps, 4.4 fps, 4.3 fps, 4.3 fps, 4.3 fps, 4.2 fps, 4.2 fps, 4.2 fps, 4.1 fps, 4.1 fps, 4.1 fps, 4.1 fps, 4.0 fps, 4.0 fps, 4.0 fps, 3.9 fps, 3.9 fps, 3.9 fps, 3.8 fps, 3.8 fps, 3.8 fps, 3.8 fps, 3.7 fps, 3.7 fps, 3.7 fps, 3.7 fps, 3.6 fps, 3.6 fps"
+                        data-prompt="A tiny yellow duckling swims away from the viewer across a clear sunlit pond, sending soft concentric ripples through the shallow water as lily pads and blooming pink water lilies float ahead — lush green trees blur along the far bank, sunlight sparkling on the surface, the whole scene radiating gentle warmth, innocence, and the peaceful charm of a quiet garden pond in midsummer."
                     ></video>
                     </div>
 
                     <div class="video-item">
-                    <div class="video-title">Deep Forcing (<em>Training-Free</em>)</div>
+                    <div class="video-title">WorldKV</div>
                     <video
                         class="video-player"
-                        src="videos/ours_city.mp4"
+                        src="world_videos/dynamic/04_RLWSRL90_245.mp4"
                         autoplay
                         loop
                         muted
                         playsinline
-                        data-prompt="A stylish woman strolls down a bustling Tokyo street, the warm glow of neon lights and animated city signs casting vibrant reflections. She wears a sleek black leather jacket paired with a flowing red dress and black boots, her black purse slung over her shoulder. Sunglasses perched on her nose and a bold red lipstick add to her confident, casual demeanor. The street is damp and reflective, creating a mirror-like effect that enhances the colorful lights and shadows. Pedestrians move about, adding to the lively atmosphere. The scene is captured in a dynamic medium shot with the woman walking slightly to one side, highlighting her graceful strides."
+                        data-metrics-step-frames="12"
+                        data-metrics-fps="16"
+                        data-kv-vram-series="1.7 GB, 3.4 GB, 5.1 GB, 6.8 GB, 8.5 GB, 10.2 GB, 11.9 GB, 13.6 GB, 15.3 GB, 17.0 GB, 18.7 GB, 20.4 GB, 22.1 GB, 23.8 GB, 25.5 GB, 27.2 GB, 28.9 GB, 30.6 GB, 32.3 GB, 34.0 GB"
+                        data-throughput-series="8.9 fps, 8.8 fps, 8.6 fps, 8.3 fps, 8.0 fps, 7.9 fps, 7.8 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps"
+                        data-prompt="A tiny yellow duckling swims away from the viewer across a clear sunlit pond, sending soft concentric ripples through the shallow water as lily pads and blooming pink water lilies float ahead — lush green trees blur along the far bank, sunlight sparkling on the surface, the whole scene radiating gentle warmth, innocence, and the peaceful charm of a quiet garden pond in midsummer."
                     ></video>
                     </div>
 
-                    <div class="video-item">
+                    <!-- <div class="video-item">
                     <div class="video-title">LongLive</div>
                     <video
                         class="video-player"
@@ -204,7 +220,7 @@
                         playsinline
                         data-prompt="A vibrant and dynamic illustration in the style of a futuristic sci-fi comic, depicting two playful dogs, a Samoyed and a Golden Retriever, running through a neon-lit city at night. The dogs' fur gleams under the vibrant glow of the city's neon lights, casting colorful reflections. They move energetically, tails wagging, with the Samoyed having a fluffy white coat and the Golden Retriever sporting a golden one. The cityscape is filled with towering skyscrapers adorned with flickering neon signs, creating a mesmerizing visual spectacle. The background features blurred outlines of the city's architecture, with hints of glowing streets and distant buildings. The camera angle captures a medium shot of the dogs from a slightly elevated perspective, emphasizing their joyful movements."
                     ></video>
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -212,42 +228,86 @@
 
             <div class="base-row section">
                 <p class="explain">
-                    <strong>Deep Forcing</strong> is a training-free framework that enables long-video generation in autoregressive video diffusion models by combining <strong>Deep Sink</strong> and <strong>Participative Compression</strong>. <br>
+                    <strong>WorldKV</strong> is a training-free framework that enables efficient long-term world memory in autoregressive video world models by combining <strong>World Retrieval</strong> and <strong>World Compression</strong>. <br>
                     <br>
-                    <strong>Deep Forcing</strong> achieves <strong>more than 12× length extrapolation</strong> (5s → 60s+) without fine-tuning. This approach delivers superior imaging and aesthetic quality compared to training-based methods while preserving real-time streaming capability.                </p>
-            </div>
+                    <strong>WorldKV</strong> matches and in some cases exceeds <strong>full KV-cache memory fidelity at roughly 2× the throughput under almost half the KV cache VRAM/RAM footprint</strong> on Matrix-Game 2.0 and LingBot-World-Fast.
+                </p>
+</div>
+
+            <section id="Introduction" class="section">
+                <h2>Introduction</h2>
+                <div class="motivation-parts">
+                    <div class="motivation-part">
+                        <h3>Emergent Memory</h3>
+                        <p>
+                            The KV cache of autoregressive video world models is not merely a computational buffer — even models trained only on short clips can leverage the full KV history as an emergent long-term visual memory, faithfully reproducing previously seen viewpoints upon revisit.
+                        </p>
+                        <div class="motivation-video-grid">
+                            <div class="video-item">
+                                <div class="video-label">Matrix-Game-2.0</div>
+                                <video class="video-player" src="world_videos/fulls/re_R_L_R_L_90_nop.mp4" autoplay loop muted playsinline
+                                data-prompt="See the full prompt in the Cases when WorldKV outperforms Full KV section."></video>
+                            </div>
+                            <div class="video-item">
+                                <div class="video-label">Lingbot-World-Fast</div>
+                                <video class="video-player" src="world_videos/fulls/20_R_L_R_L_R_L90_360.mp4" autoplay loop muted playsinline
+                                data-prompt="See the full prompt in the Cases when WorldKV outperforms Full KV section."></video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <section id="Motivation" class="section">
                 <h2>Motivation</h2>
-                <div class="image-container motivation-figure motivation-two-col">
-                    <div class="image-content motivation-primary">
-                        <img src="images/motivation_attn.png" class="img medium-image" alt="Comparisons diagram">
+                <div class="motivation-parts">
+                    <div class="motivation-part">
+                        <h3>Efficiency</h3>
+                        <p>
+                            Full KV-cache attention preserves long-term memory, but its VRAM footprint quickly exceeds GPU capacity and the quadratically growing attention cost degrades inference speed below real-time. Efficient world memory requires retaining only the chunks that matter for revisits.
+                        </p>
+                        <div class="motivation-image-grid">
+                            <div class="image-content">
+                                <img src="images/fps_fullkv_ours_14b_13b_ours14_distinct.png" class="img medium-image" alt="WorldKV efficiency analysis">
+                            </div>
+                            <div class="image-content">
+                                <img src="images/kv_cache_vram_short_labels_large_font.png" class="img medium-image" alt="WorldKV cache efficiency comparison">
+                            </div>
+                        </div>
                     </div>
-                    <div class="image-content motivation-secondary">
-                        <img src="images/motivation_attn2.png" class="img medium-image" alt="Additional comparisons diagram">
-                    </div>
-                </div>
-                <div class="motivation-caption">
-                    <p><b>Deep Sink:</b> Our analysis reveals attention distributes across both early and intermediate frames—unlike LLM sinks preserving only few initial tokens—requiring deep sink preservation (40-60%) to maintain fidelity beyond training length.</p>
 
-                    <p><b>Participative Compression:</b> To prevent quality degeneration from attention dilution caused by error accumulation during extreme out-of-distribution long-context extrapolation.</p>
+                    <div class="motivation-part">
+                        <h3>Attention Analysis</h3>
+                        <p>
+                            Our analysis reveals attention concentrates on past KV chunks whose viewpoints overlap with the current frame, motivating camera/action-indexed retrieval of the top-k viewpoint-relevant chunks back into the active attention window.
+                        </p>
+                        <div class="image-container motivation-figure motivation-two-col">
+                            <!-- <div class="image-content motivation-primary">
+                                <img src="images/motivation_attn.png" class="img medium-image" alt="Comparisons diagram">
+                            </div> -->
+                            <div class="image-content motivation-secondary">
+                                <img src="images/attn_final3_image.png" class="img medium-image" alt="Additional comparisons diagram">
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
           </section>
 
             <section id="Methods" class="section">
-                <h2>Deep Forcing</h2>
+                <h2>WorldKV</h2>
                 <div class="image-container methods-figure">
                     <div class="image-content">
-                        <img src="images/main_figure.png" class="image-item img large-image z-depth-1" alt="VIRAL framework illustration">
+                        <img src="images/main_figure_worldkv.png" class="image-item img large-image z-depth-1" alt="VIRAL framework illustration">
                     </div>
                 </div>
                 <div class="methods-text">
                     <p>
                     </p>
                     <p>
-                   <strong><i>Deep Sink</i></strong> maintains a substantially enlarged attention sink (~50% of cache), with temporal RoPE adjustment, ensuring temporal coherence between sink tokens and current frames. 
+                    <strong><i>World Retrieval</i></strong> stores evicted KV-cache chunks in GPU/CPU memory indexed by camera/action state, and selectively retrieves the top-k viewpoint-relevant chunks back into the active attention window at revisit time, with no re-encoding required.
                     <p>
-                    <strong><i>Participative Compression</i></strong>, which selectively prunes redundant tokens by computing attention scores from recent frames, retains only the top-C most contextually relevant tokens while evicting redundant and degraded tokens.
+                    <strong><i>World Compression</i></strong>, which designates the first frame of each chunk as an anchor and prunes tokens by key-key cosine similarity, retains only the low-similarity distinctive tokens that encode newly revealed regions and temporally changing content while halving per-chunk storage.
                     </p>
                 </div>
             </section>
@@ -255,97 +315,98 @@
             <section id="visual-representation-alignment" class="section">
                 <h2>Qualitative Results</h2>
                 <p>
-                    Qualitative results demonstrating the capabilities of Deep Forcing.
+                    Qualitative results demonstrating the capabilities of WorldKV.
                 </p>
 
                 <!-- 1) Ours only: 3 x 4 grid (12 clips) -->
-                <h3>Deep Forcing on diverse prompts</h3>
+                <h3>WorldKV on diverse scenes</h3>
                 <div class="video-grid-3x4">
                     <!-- Row 1 (모델 인디케이터 포함) -->
                     <div class="video-item">
-                        <div class="video-label">Corgi</div>
-                        <video class="video-player" src="videos/ours_corgi.mp4"
+                        <div class="video-label">Astronut</div>
+                        <video class="video-player" src="world_videos/dynamic/01_R_L_W_S_R_L90_318.mp4"
                             autoplay loop muted playsinline
-                            data-prompt="A vibrant and lively vlog-style photo of a corgi in tropical Maui, showcasing the dog energetically filming itself on a sandy beach. The corgi stands on the shore, one paw slightly lifted, with a joyful and curious expression. It wears a colorful collar and a small backpack camera slung over its neck. The background features a lush, palm-fringed beach with clear turquoise waters and a bright blue sky. The photo has a warm, natural lighting effect, capturing the corgi from a slightly elevated angle, emphasizing its playful and adventurous spirit."></video>
+                            data-prompt="A lone astronaut in a bulky white spacesuit walks across a vast rust-colored desert plain on a Mars-like world, dust swirling around their boots as distant rocky mountains rise beneath a hazy orange sky — a small futuristic marker stands ahead on the barren terrain, while the low cinematic camera angle follows from behind, evoking quiet isolation, exploration, and the fragile determination of a human traveler crossing an alien frontier."></video>
                     </div>
                     <div class="video-item">
                         <div class="video-label">Underwater</div>
-                        <video class="video-player" src="videos/ours_underwater_real.mp4"
+                        <video class="video-player" src="world_videos/dynamic/24_WSRLRL90_245.mp4"
                             autoplay loop muted playsinline
-                            data-prompt="A dynamic FPV aerial view of a vibrant underwater suburban neighborhood, where colorful corals line the streets. The camera moves swiftly, capturing the intricate details of the coral formations and the diverse marine life swimming around. The streets are bustling with colorful fish and schools of tropical fish, creating a lively and energetic atmosphere. The water is crystal clear, with sunlight filtering through, casting a warm glow on the scene. The camera angle shifts slightly, providing a sense of depth and movement, as if the viewer is flying through this underwater world. A fast-paced, first-person view shot with a vivid and lifelike underwater setting."></video>
+                            data-prompt="A scuba diver explores the dark interior of a sunken shipwreck, twin oxygen tanks and yellow fins visible as their flashlight cuts through blue-green water filled with bubbles and small fish — rusted pipes, broken beams, and corroded metal structures frame the narrow passage ahead, creating a tense underwater atmosphere of mystery, danger, and discovery inside a forgotten wreck."></video>
                     </div>
                     <div class="video-item">
-                        <div class="video-label">Burger Boy</div>
-                        <video class="video-player" src="videos/ours_burger.mp4"
+                        <div class="video-label">Dawn</div>
+                        <video class="video-player" src="world_videos/dynamic/20_R_L_W_S_R_L90_318.mp4"
                             autoplay loop muted playsinline
-                            data-prompt="A Chinese boy wearing glasses sits in a fast food restaurant, enjoying a delicious cheeseburger with his eyes closed. His hair is neatly combed, and he has a slightly dreamy expression. He holds the cheeseburger with both hands, taking a big bite. The background shows other diners and a colorful menu board with various fast food items. The lighting is warm and inviting, creating a cozy atmosphere. A close-up shot from a slightly lower angle, capturing the boy's joyful moment."></video>
+                            data-prompt="A sepia-toned etched illustration shows an armored rider on horseback crossing a barren plain beneath a blazing sun, lance raised as distant windmills stand across the horizon — rough crosshatched lines and weathered parchment textures give the landscape an old-world literary quality, evoking the lonely, dreamlike journey of a knight-errant through a dusty countryside of memory, madness, and impossible ideals."></video>
                     </div>
 
                     <!-- Row 2 -->
                     <div class="video-item">
-                        <div class="video-label">Kitchen</div>
-                        <video class="video-player" src="videos/ours_kitchen.mp4"
+                        <div class="video-label">Flying Sword</div>
+                        <video class="video-player" src="world_videos/dynamic/21_L_R_W_S_L_R90_318.mp4"
                             autoplay loop muted playsinline
-                            data-prompt="A dynamic scene captured in the style of a vibrant food photography, showcasing a chef skillfully chopping onions in a bustling kitchen. The chef, a middle-aged man with a weathered face and determined expression, skillfully slices the onions with quick, practiced movements. He wears a white apron tied neatly around his waist and a chef's hat perched atop his head. The background is a well-equipped kitchen, with stainless steel appliances and countertops cluttered with various cooking tools and ingredients. Steam rises from a pot on the stove, and sunlight filters through the window, casting a warm glow. A medium shot with the chef at the center, capturing the intensity of his work."></video>
+                            data-prompt="A white-robed swordsman stands balanced on a glowing golden flying blade above a vast celestial palace complex floating among the clouds, ornate East Asian temple rooftops and gilded towers stretching toward a monumental mountain-like shrine in the distance — mist swirls between suspended pavilions, sunlight glints off curved roofs, and the scene radiates mythic grandeur, martial fantasy, and divine ascent through a heavenly realm."></video>
                     </div>
                     <div class="video-item">
-                        <div class="video-label">Romantic</div>
-                        <video class="video-player" src="videos/ours_romantic.mp4"
+                        <div class="video-label">Iron Guy</div>
+                        <video class="video-player" src="world_videos/dynamic/23_RLWSRL90_245.mp4"
                             autoplay loop muted playsinline
-                            data-prompt="A romantic scene in a nighttime cityscape where a man and a woman walk hand in hand under a starry sky, their faces illuminated by the soft glow of streetlights. They are dressed in casual yet elegant attire, the man in a dark blue suit and the woman in a light green dress. A wooden bucket is placed on the ground nearby, adding a touch of rustic charm. The couple’s expressions are filled with happiness and affection, as they gaze into each other’s eyes. The background features tall buildings with windows lit up, creating a warm and cozy atmosphere. The stars above twinkle brightly, enhancing the serene and intimate mood. The scene is captured in a medium shot with a slightly upward angle, capturing both the couple and the surrounding environment."></video>
-                    </div>
+                            data-prompt="A futuristic armored hero flies between towering skyscrapers above a dense modern city, blue jet flames blazing from their hands and boots as glowing cyan panels illuminate the silver exosuit — the camera follows from behind at high altitude, with glass towers, narrow streets, and a distant river receding below, capturing the exhilarating speed and cinematic spectacle of a sci-fi flight over an urban skyline."></video>
+                    </div> 
+
                     <div class="video-item">
-                        <div class="video-label">Pigeon</div>
-                        <video class="video-player" src="videos/ours_pigion.mp4"
+                        <div class="video-label">Reed</div>
+                        <video class="video-player" src="world_videos/dynamic/26_L_R_W_S_L_R90_318.mp4"
                             autoplay loop muted playsinline
-                            data-prompt="A close-up shot of a Victoria crowned pigeon in a naturalistic wildlife photography style, showcasing its striking blue plumage and red chest. The bird’s crest is adorned with delicate, lacy feathers, and its eye is a striking red color, adding to its regal and majestic appearance. The pigeon’s head is tilted slightly to the side, giving it a regal gaze. The background is blurred, emphasizing the bird’s striking beauty against a soft, muted backdrop. The lighting highlights the bird’s feathers, creating a vibrant and lifelike image."></video>
+                            data-prompt="A vast open highland plain stretches beneath a pale blue sky, golden grasses swaying in the foreground as small lakes glimmer across the flat valley floor — snow-capped mountains rise in the distance beyond rolling brown hills, while crisp daylight and wide horizontal composition convey the quiet spaciousness, wind-swept solitude, and natural beauty of a remote northern landscape."></video>
                     </div>
 
                     <!-- Row 3 -->
                     <div class="video-item">
-                        <div class="video-label">Dwarf</div>
-                        <video class="video-player" src="videos/ours_60s/ours_dwarf.mp4"
+                        <div class="video-label">Squirrel</div>
+                        <video class="video-player" src="world_videos/dynamic/29_L_R_W_S_L_R90_318.mp4"
                             autoplay loop muted playsinline
-                            data-prompt="A close-up view of a glass sphere containing a tranquil Zen garden. Inside, a small Eastern dwarf with weathered skin and a serene expression is raking the sand, meticulously creating intricate patterns with a bamboo rake. His movements are deliberate and meditative, enhancing the peaceful atmosphere of the scene. The background is blurred, revealing only hints of greenery and rocks, adding to the serene setting. The sphere itself is polished, reflecting the surroundings subtly. The camera angle captures the dwarf from a slightly elevated position, emphasizing his focused and contemplative pose."></video>
+                            data-prompt="A squirrel climbs upward along the rough bark of a towering tree, its fluffy tail filling the foreground as the camera looks steeply toward the sunlit canopy above — bright rays pierce through dense green leaves, moss and textured bark run vertically through the frame, and the intimate low-angle perspective captures the energetic motion and natural wonder of a small woodland creature in a summer forest."></video>
                     </div>
                     <div class="video-item">
-                        <div class="video-label">Flame Wisp</div>
-                        <video class="video-player" src="videos/ours_60s/ours_fire.mp4"
+                        <div class="video-label">Cat1</div>
+                        <video class="video-player" src="world_videos/dynamic/31_WSRLRL90_245.mp4"
                             autoplay loop muted playsinline
-                            data-prompt="A close-up shot of a living flame wisp darting through a bustling fantasy market at night. The wisp, flickering with an ethereal glow, moves swiftly among the stalls and vendors. The market is filled with colorful lanterns, glowing signs, and various magical items. The background features a crowded scene with people in exotic attire, bustling about their business under the soft light of the full moon. The air is filled with the scent of spices and incense. The camera angle is slightly elevated, capturing the dynamic movement of the wisp as it weaves through the market, creating a sense of wonder and enchantment."></video>
+                            data-prompt="A fluffy cat walks across a soft cream carpet toward a glowing fireplace in a warm, cozy living room, its tail swaying as golden lamplight fills the space — wooden bookshelves, cushioned armchairs, potted plants, sheer curtains, and a neatly arranged mantel surround the hearth, creating an inviting domestic scene of comfort, quiet companionship, and peaceful evening warmth."></video>
                     </div>
                     <div class="video-item">
-                        <div class="video-label">Running Pig</div>
-                        <video class="video-player" src="videos/ours_60s/ours_pig.mp4"
+                        <div class="video-label">Magic Girl</div>
+                        <video class="video-player" src="world_videos/dynamic/37_RLWSRL90_245.mp4"
                             autoplay loop muted playsinline
-                            data-prompt="A vibrant anime illustration in a dynamic motion style of a pink pig running rapidly towards the camera in a narrow alley in Tokyo. The pig has large, round eyes and a playful expression, with its ears perked up and body slightly hunched forward. It is wearing a small, pink bow tie, adding a cute touch to its appearance. The background showcases the bustling Tokyo alley, with colorful signs and neon lights reflecting off the wet pavement. The scene is captured from a low-angle perspective, emphasizing the pig's energetic movement."></video>
+                            data-prompt="A pink-haired anime-style mage rides a glowing broomstick through a rugged coastal canyon at sunset, sparkling magical trails curling behind her as she flies above crashing waves and jagged sea stacks — steep cliffs frame the golden ocean horizon, warm light glitters on the water, and the cinematic fantasy scene radiates adventure, speed, and whimsical magic over a dramatic seaside landscape."></video>
                     </div>
 
                     <!-- Row 4 -->
                     <div class="video-item">
-                        <div class="video-label">Dogs</div>
-                        <video class="video-player" src="videos/ours_60s/ours_doggy.mp4"
+                        <div class="video-label">Cat2</div>
+                        <video class="video-player" src="world_videos/dynamic/41_RLWSRL90_245.mp4"
                             autoplay loop muted playsinline
-                            data-prompt="A winter scene in a snowy forest, where a litter of playful golden retriever puppies emerge from the snow. Their heads pop out, their fluffy fur glistening in the sunlight, and they wag their tails joyfully. They are covered in snow, with some paw prints leading away into the deep snow. One puppy is burying its nose in the snow, while another chases a small ball that has rolled nearby. The background shows dense evergreen trees and a gentle slope leading up to a clearing. The air is crisp and cold, with tiny snowflakes falling gently. A close-up shot from a slightly elevated angle, capturing the lively and energetic moment."></video>
+                            data-prompt="A fluffy cream-colored cat walks across a sunlit living room rug beside a glowing fireplace, its body illuminated by warm window light spilling over polished wooden floors — built-in bookshelves, a cushioned armchair, woven baskets, folded blankets, and large white-framed windows surround the cozy domestic scene, creating a peaceful atmosphere of quiet comfort, soft textures, and afternoon warmth."></video>
                     </div>
                     <div class="video-item">
-                        <div class="video-label">Dynamic Puddle</div>
-                        <video class="video-player" src="videos/ours_60s/ours_puddle.mp4"
+                        <div class="video-label">Soccer Goal</div>
+                        <video class="video-player" src="world_videos/dynamic/uni01_L_R_W_S_L_R90_318.mp4"
                             autoplay loop muted playsinline
-                            data-prompt="A high-speed video capturing the dynamic interaction between raindrops and a puddle, showcasing the ripples and splashes in vivid detail. Each raindrop hits the surface with force, creating a series of concentric ripples that spread outwards and merge into larger waves. The water splashes upward, dispersing droplets in all directions. The background is a blurred urban setting with tall buildings and streetlights reflecting off the wet pavement. The video has a smooth, cinematic quality with clear, fast-moving visuals. A close-up shot from a low angle, emphasizing the kinetic energy of the raindrops."></video>
+                            data-prompt="A white metal soccer goal stands at the edge of a vivid green athletic field beside a curving red running track, its slightly sagging net casting thin shadows across the turf — low modern school buildings and dense summer trees line the background beneath a broad hazy sky, the scene bright and open, conveying the calm emptiness of a quiet campus sports ground between games."></video>
                     </div>
                     <div class="video-item">
-                        <div class="video-label">Fluffy Monster</div>
-                        <video class="video-player" src="videos/ours_60s/ours_monster.mp4"
+                        <div class="video-label">Urban</div>
+                        <video class="video-player" src="world_videos/dynamic/uni03_L_R_W_S_L_R90_318_cut.mp4"
                             autoplay loop muted playsinline
-                            data-prompt="A close-up 3D animated scene of a short, fluffy monster kneeling beside a melting red candle. The monster has large, wide eyes and an open mouth, gazing at the flame with a look of wonder and curiosity. Its soft, fluffy fur contrasts with the warm, dramatic lighting that highlights every detail of its gentle, innocent expression. The pose conveys a sense of playfulness and exploration, as if the creature is discovering the world for the first time. The background features a cozy, warmly lit room with subtle hints of a fireplace and soft furnishings, enhancing the overall atmosphere. The use of warm colors and dramatic lighting creates a captivating and inviting scene."></video>
+                            data-prompt="A narrow residential road curves gently past dark wooden houses with tiled roofs and shuttered garages, a small white van tucked beside a utility pole at the edge of the pavement — low grassy embankments and distant wooded hills frame the quiet neighborhood beneath a soft blue evening sky with scattered clouds, capturing the peaceful stillness of a rural Japanese town at dusk."></video>
                     </div>
                 </div>
 
-                <!-- 2) Ours vs baselines: 4 x 4 grid (기존 그대로) -->
-                <h3 id="comparison" class="comparison-heading">Comparison with baselines on same prompts</h3>
+                <!-- 2) Ours vs baselines: 3 stacked rows (WorldKV / Full KV / Sliding Window) -->
+                <h3 id="comparison" class="comparison-heading">Comparison with baselines</h3>
                 <p class="paragraph">
-                    Qualitative comparisons of Deep Forcing against Self Forcing and other baselines on same prompts.
+                    Qualitative comparisons of WorldKV against Full KV and other baselines on same prompts.
                 </p>
 
                 <div class="comparison-slider">
@@ -355,121 +416,93 @@
                     <div class="comparison-track">
                         <div class="comparison-slide active">
                             <div class="video-item">
-                                <div class="video-label">Deep Forcing (Ours)</div>
-                                <video class="video-player" src="videos/ours_60s/ours_journey.mp4"
+                                <div class="video-label">WorldKV (Ours)</div>
+                                <video class="video-player" src="world_videos/comparisons/08_ours.mp4"
                                     autoplay loop muted playsinline
-                                    data-prompt="A movie trailer in a classic cinematic style, featuring the adventurous journey of a 30-year-old space man wearing a vibrant red wool knitted motorcycle helmet. The scene unfolds against a vast blue sky and a desolate salt desert landscape. Shot on 35mm film, the trailer showcases vivid and rich colors, capturing the hero as he navigates through the harsh terrain with determination. His helmet glints under the sun, adding to the dramatic effect. The background is a mix of sweeping desert vistas and distant horizons, with the occasional shimmer of light reflecting off the salt flats. A dynamic medium shot with a sweeping overhead angle, emphasizing the hero's resilience and the vastness of his adventure."
+                                    data-prompt="A sparse medieval stone chamber is lit by a single overhead skylight, casting a clean beam of light across sandy brick walls where a longsword, a plain steel shield, and a battle axe hang mounted in a row — three oak barrels with iron bands are stacked neatly in the corner, the entire room spare and functional, conveying the quiet readiness of a soldier's personal armory."
                                     ></video>
                             </div>
                             <div class="video-item">
-                                <div class="video-label">Self Forcing</div>
-                                <video class="video-player" src="videos/60s/self_journey.mp4"
+                                <div class="video-label">Full KV</div>
+                                <video class="video-player" src="world_videos/comparisons/08_fullKV.mp4"
                                     autoplay loop muted playsinline
-                                    data-prompt="A movie trailer in a classic cinematic style, featuring the adventurous journey of a 30-year-old space man wearing a vibrant red wool knitted motorcycle helmet. The scene unfolds against a vast blue sky and a desolate salt desert landscape. Shot on 35mm film, the trailer showcases vivid and rich colors, capturing the hero as he navigates through the harsh terrain with determination. His helmet glints under the sun, adding to the dramatic effect. The background is a mix of sweeping desert vistas and distant horizons, with the occasional shimmer of light reflecting off the salt flats. A dynamic medium shot with a sweeping overhead angle, emphasizing the hero's resilience and the vastness of his adventure."
+                                    data-prompt="A sparse medieval stone chamber is lit by a single overhead skylight, casting a clean beam of light across sandy brick walls where a longsword, a plain steel shield, and a battle axe hang mounted in a row — three oak barrels with iron bands are stacked neatly in the corner, the entire room spare and functional, conveying the quiet readiness of a soldier's personal armory."
                                     ></video>
                             </div>
                             <div class="video-item">
-                                <div class="video-label">Rolling Forcing</div>
-                                <video class="video-player" src="videos/60s/roll_journey.mp4"
+                                <div class="video-label">Sliding Window</div>
+                                <video class="video-player" src="world_videos/comparisons/08_sliding.mp4"
                                     autoplay loop muted playsinline
-                                    data-prompt="A movie trailer in a classic cinematic style, featuring the adventurous journey of a 30-year-old space man wearing a vibrant red wool knitted motorcycle helmet. The scene unfolds against a vast blue sky and a desolate salt desert landscape. Shot on 35mm film, the trailer showcases vivid and rich colors, capturing the hero as he navigates through the harsh terrain with determination. His helmet glints under the sun, adding to the dramatic effect. The background is a mix of sweeping desert vistas and distant horizons, with the occasional shimmer of light reflecting off the salt flats. A dynamic medium shot with a sweeping overhead angle, emphasizing the hero's resilience and the vastness of his adventure."                                    
+                                    data-prompt="A sparse medieval stone chamber is lit by a single overhead skylight, casting a clean beam of light across sandy brick walls where a longsword, a plain steel shield, and a battle axe hang mounted in a row — three oak barrels with iron bands are stacked neatly in the corner, the entire room spare and functional, conveying the quiet readiness of a soldier's personal armory."                                    
+                                    ></video>
+                            </div>
+                        </div>
+                        <!-- <div class="comparison-slide">
+                            <div class="video-item">
+                                <div class="video-label">WorldKV (Ours)</div>
+                                <video class="video-player" src="world_videos/comparisons/31_ours_cut.mp4"
+                                    autoplay loop muted playsinline
+                                    data-prompt="A lively medieval-style harbor settlement rises along the edge of a mirror-still lake, where wooden docks, stone retaining walls, and a timber-framed workshop cluster beneath a towering watchtower built into the rocky hillside — brilliant autumn trees in shades of red and gold punctuate the shoreline, their reflections shimmering across the water under a vast sky of towering clouds, giving the scene the grand, polished feel of an open-world fantasy game."
                                     ></video>
                             </div>
                             <div class="video-item">
-                                <div class="video-label">LongLive</div>
-                                <video class="video-player" src="videos/60s/long_journey.mp4"
+                                <div class="video-label">Full KV</div>
+                                <video class="video-player" src="world_videos/comparisons/31_fullKV_cut.mp4"
                                     autoplay loop muted playsinline
-                                    data-prompt="A movie trailer in a classic cinematic style, featuring the adventurous journey of a 30-year-old space man wearing a vibrant red wool knitted motorcycle helmet. The scene unfolds against a vast blue sky and a desolate salt desert landscape. Shot on 35mm film, the trailer showcases vivid and rich colors, capturing the hero as he navigates through the harsh terrain with determination. His helmet glints under the sun, adding to the dramatic effect. The background is a mix of sweeping desert vistas and distant horizons, with the occasional shimmer of light reflecting off the salt flats. A dynamic medium shot with a sweeping overhead angle, emphasizing the hero's resilience and the vastness of his adventure."                                   
+                                    data-prompt="A lively medieval-style harbor settlement rises along the edge of a mirror-still lake, where wooden docks, stone retaining walls, and a timber-framed workshop cluster beneath a towering watchtower built into the rocky hillside — brilliant autumn trees in shades of red and gold punctuate the shoreline, their reflections shimmering across the water under a vast sky of towering clouds, giving the scene the grand, polished feel of an open-world fantasy game."
+                                    ></video>
+                            </div>
+                            <div class="video-item">
+                                <div class="video-label">Sliding Window</div>
+                                <video class="video-player" src="world_videos/comparisons/31_sliding_cut.mp4"
+                                    autoplay loop muted playsinline
+                                    data-prompt="A lively medieval-style harbor settlement rises along the edge of a mirror-still lake, where wooden docks, stone retaining walls, and a timber-framed workshop cluster beneath a towering watchtower built into the rocky hillside — brilliant autumn trees in shades of red and gold punctuate the shoreline, their reflections shimmering across the water under a vast sky of towering clouds, giving the scene the grand, polished feel of an open-world fantasy game."                                    
+                                    ></video>
+                            </div>
+                        </div> -->
+                        <div class="comparison-slide">
+                            <div class="video-item">
+                                <div class="video-label">WorldKV (Ours)</div>
+                                <video class="video-player" src="world_videos/comparisons/14_ours.mp4"
+                                    autoplay loop muted playsinline
+                                    data-prompt="A sun-drenched suburban home with warm tan stucco walls and a wide white double-car garage faces a broad smooth concrete driveway — manicured shrubs and tropical ornamental grasses line the base of the fence, a tall palm tree rising on the right against a bright partly cloudy sky, the scene radiating the clean, comfortable stillness of a well-kept residential neighborhood on a warm sunny afternoon."
+                                    ></video>
+                            </div>
+                            <div class="video-item">
+                                <div class="video-label">Full KV</div>
+                                <video class="video-player" src="world_videos/comparisons/14_fullKV.mp4"
+                                    autoplay loop muted playsinline
+                                    data-prompt="A sun-drenched suburban home with warm tan stucco walls and a wide white double-car garage faces a broad smooth concrete driveway — manicured shrubs and tropical ornamental grasses line the base of the fence, a tall palm tree rising on the right against a bright partly cloudy sky, the scene radiating the clean, comfortable stillness of a well-kept residential neighborhood on a warm sunny afternoon."                                    
+                                    ></video>
+                            </div>
+                            <div class="video-item">
+                                <div class="video-label">Sliding Window</div>
+                                <video class="video-player" src="world_videos/comparisons/14_sliding.mp4"
+                                    autoplay loop muted playsinline
+                                    data-prompt="A sun-drenched suburban home with warm tan stucco walls and a wide white double-car garage faces a broad smooth concrete driveway — manicured shrubs and tropical ornamental grasses line the base of the fence, a tall palm tree rising on the right against a bright partly cloudy sky, the scene radiating the clean, comfortable stillness of a well-kept residential neighborhood on a warm sunny afternoon."                                    
                                     ></video>
                             </div>
                         </div>
                         <div class="comparison-slide">
                             <div class="video-item">
-                                <div class="video-label">Deep Forcing (Ours)</div>
-                                <video class="video-player" src="videos/ours_60s/ours_train.mp4"
+                                <div class="video-label">WorldKV (Ours)</div>
+                                <video class="video-player" src="world_videos/1/07_L_R_W_S_L_R90_318_seed4936.mp4"
                                     autoplay loop muted playsinline
-                                    data-prompt="A subtle and elegant photograph in a Japanese style, capturing a woman with gentle, contemplative eyes and flowing dark hair sitting by the window of a high-speed train. The train moves rapidly through a bustling cityscape, with blurred reflections of the city lights and buildings on the window pane. The woman appears serene, her hands resting gently on her lap. The background features a blend of traditional Japanese architecture and modern skyscrapers, with a soft, muted color palette. The photo has a vintage film texture, emphasizing the movement and energy of the scene. A medium shot from a slightly angled perspective, highlighting the woman's thoughtful gaze and the dynamic motion of the train."
+                                    data-prompt="A vibrant canal-side market town bursts with color and life — timber-framed merchant buildings with warm amber rooftops face each other across a turquoise waterway where a gentle fountain bubbles, colorful bunting strung between balconies overhead, market stalls and hanging lanterns lining the banks below — the whole scene shimmers in bright midday light, radiating the festive, storybook charm of a thriving fantasy town center."
                                     ></video>
                             </div>
                             <div class="video-item">
-                                <div class="video-label">Self Forcing</div>
-                                <video class="video-player" src="videos/60s/self_train.mp4"
+                                <div class="video-label">Full KV</div>
+                                <video class="video-player" src="world_videos/1/07_fullKV_cut.mp4"
                                     autoplay loop muted playsinline
-                                    data-prompt="A subtle and elegant photograph in a Japanese style, capturing a woman with gentle, contemplative eyes and flowing dark hair sitting by the window of a high-speed train. The train moves rapidly through a bustling cityscape, with blurred reflections of the city lights and buildings on the window pane. The woman appears serene, her hands resting gently on her lap. The background features a blend of traditional Japanese architecture and modern skyscrapers, with a soft, muted color palette. The photo has a vintage film texture, emphasizing the movement and energy of the scene. A medium shot from a slightly angled perspective, highlighting the woman's thoughtful gaze and the dynamic motion of the train."                                    
+                                    data-prompt="A vibrant canal-side market town bursts with color and life — timber-framed merchant buildings with warm amber rooftops face each other across a turquoise waterway where a gentle fountain bubbles, colorful bunting strung between balconies overhead, market stalls and hanging lanterns lining the banks below — the whole scene shimmers in bright midday light, radiating the festive, storybook charm of a thriving fantasy town center."                                    
                                     ></video>
                             </div>
                             <div class="video-item">
-                                <div class="video-label">Rolling Forcing</div>
-                                <video class="video-player" src="videos/60s/roll_train.mp4"
+                                <div class="video-label">Sliding Window</div>
+                                <video class="video-player" src="world_videos/1/07_sliding_cut.mp4"
                                     autoplay loop muted playsinline
-                                    data-prompt="A subtle and elegant photograph in a Japanese style, capturing a woman with gentle, contemplative eyes and flowing dark hair sitting by the window of a high-speed train. The train moves rapidly through a bustling cityscape, with blurred reflections of the city lights and buildings on the window pane. The woman appears serene, her hands resting gently on her lap. The background features a blend of traditional Japanese architecture and modern skyscrapers, with a soft, muted color palette. The photo has a vintage film texture, emphasizing the movement and energy of the scene. A medium shot from a slightly angled perspective, highlighting the woman's thoughtful gaze and the dynamic motion of the train."                                    
-                                    ></video>
-                            </div>
-                            <div class="video-item">
-                                <div class="video-label">LongLive</div>
-                                <video class="video-player" src="videos/60s/long_train.mp4"
-                                    autoplay loop muted playsinline
-                                    data-prompt="A subtle and elegant photograph in a Japanese style, capturing a woman with gentle, contemplative eyes and flowing dark hair sitting by the window of a high-speed train. The train moves rapidly through a bustling cityscape, with blurred reflections of the city lights and buildings on the window pane. The woman appears serene, her hands resting gently on her lap. The background features a blend of traditional Japanese architecture and modern skyscrapers, with a soft, muted color palette. The photo has a vintage film texture, emphasizing the movement and energy of the scene. A medium shot from a slightly angled perspective, highlighting the woman's thoughtful gaze and the dynamic motion of the train."                                    
-                                    ></video>
-                            </div>
-                        </div>
-                        <div class="comparison-slide">
-                            <div class="video-item">
-                                <div class="video-label">Deep Forcing (Ours)</div>
-                                <video class="video-player" src="videos/ours_cloud.mp4"
-                                    autoplay loop muted playsinline
-                                    data-prompt="A dramatic, epic fantasy-style illustration depicting a towering, giant cloud shaped like a man, with thunderous lightning bolts emanating from his outstretched arms and striking the ground below. The cloud-man has a fierce, determined expression, with stormy gray clouds cascading down his form, giving him a menacing presence. His eyes glow with an intense, electric blue light, and his arms are spread wide, ready to unleash more bolts. The background shows a dark, stormy sky with heavy rain and distant lightning, creating a foreboding atmosphere. The scene is rendered in a dynamic, high-detailed style with a mix of realistic and fantastical elements. A high-angle shot capturing the full figure of the cloud-man in action."
-                                    ></video>
-                            </div>
-                            <div class="video-item">
-                                <div class="video-label">Self Forcing</div>
-                                <video class="video-player" src="videos/self_cloud.mp4"
-                                    autoplay loop muted playsinline
-                                    data-prompt="A dramatic, epic fantasy-style illustration depicting a towering, giant cloud shaped like a man, with thunderous lightning bolts emanating from his outstretched arms and striking the ground below. The cloud-man has a fierce, determined expression, with stormy gray clouds cascading down his form, giving him a menacing presence. His eyes glow with an intense, electric blue light, and his arms are spread wide, ready to unleash more bolts. The background shows a dark, stormy sky with heavy rain and distant lightning, creating a foreboding atmosphere. The scene is rendered in a dynamic, high-detailed style with a mix of realistic and fantastical elements. A high-angle shot capturing the full figure of the cloud-man in action."                                    
-                                    ></video>
-                            </div>
-                            <div class="video-item">
-                                <div class="video-label">Rolling Forcing</div>
-                                <video class="video-player" src="videos/roll_cloud.mp4"
-                                    autoplay loop muted playsinline
-                                    data-prompt="A dramatic, epic fantasy-style illustration depicting a towering, giant cloud shaped like a man, with thunderous lightning bolts emanating from his outstretched arms and striking the ground below. The cloud-man has a fierce, determined expression, with stormy gray clouds cascading down his form, giving him a menacing presence. His eyes glow with an intense, electric blue light, and his arms are spread wide, ready to unleash more bolts. The background shows a dark, stormy sky with heavy rain and distant lightning, creating a foreboding atmosphere. The scene is rendered in a dynamic, high-detailed style with a mix of realistic and fantastical elements. A high-angle shot capturing the full figure of the cloud-man in action."                                    
-                                    ></video>
-                            </div>
-                            <div class="video-item">
-                                <div class="video-label">LongLive</div>
-                                <video class="video-player" src="videos/long_cloud.mp4"
-                                    autoplay loop muted playsinline
-                                    data-prompt="A dramatic, epic fantasy-style illustration depicting a towering, giant cloud shaped like a man, with thunderous lightning bolts emanating from his outstretched arms and striking the ground below. The cloud-man has a fierce, determined expression, with stormy gray clouds cascading down his form, giving him a menacing presence. His eyes glow with an intense, electric blue light, and his arms are spread wide, ready to unleash more bolts. The background shows a dark, stormy sky with heavy rain and distant lightning, creating a foreboding atmosphere. The scene is rendered in a dynamic, high-detailed style with a mix of realistic and fantastical elements. A high-angle shot capturing the full figure of the cloud-man in action."
-                                    ></video>
-                            </div>
-                        </div>
-                        <div class="comparison-slide">
-                            <div class="video-item">
-                                <div class="video-label">Deep Forcing (Ours)</div>
-                                <video class="video-player" src="videos/ours_tsunami.mp4"
-                                    autoplay loop muted playsinline
-                                    data-prompt="A dramatic and dynamic scene in the style of a disaster movie, depicting a powerful tsunami rushing through a narrow alley in Bulgaria. The water is turbulent and chaotic, with waves crashing violently against the walls and buildings on either side. The alley is lined with old, weathered houses, their facades partially submerged and splintered. The camera angle is low, capturing the full force of the tsunami as it surges forward, creating a sense of urgency and danger. People can be seen running frantically, adding to the chaos. The background features a distant horizon, hinting at the larger scale of the tsunami. A dynamic, sweeping shot from a low-angle perspective, emphasizing the movement and intensity of the event."
-                                    ></video>
-                            </div>
-                            <div class="video-item">
-                                <div class="video-label">Self Forcing</div>
-                                <video class="video-player" src="videos/self_tsunami.mp4"
-                                    autoplay loop muted playsinline
-                                    data-prompt="A dramatic and dynamic scene in the style of a disaster movie, depicting a powerful tsunami rushing through a narrow alley in Bulgaria. The water is turbulent and chaotic, with waves crashing violently against the walls and buildings on either side. The alley is lined with old, weathered houses, their facades partially submerged and splintered. The camera angle is low, capturing the full force of the tsunami as it surges forward, creating a sense of urgency and danger. People can be seen running frantically, adding to the chaos. The background features a distant horizon, hinting at the larger scale of the tsunami. A dynamic, sweeping shot from a low-angle perspective, emphasizing the movement and intensity of the event."                                    
-                                    ></video>
-                            </div>
-                            <div class="video-item">
-                                <div class="video-label">Rolling Forcing</div>
-                                <video class="video-player" src="videos/roll_tsunami.mp4"
-                                    autoplay loop muted playsinline
-                                    data-prompt="A dramatic and dynamic scene in the style of a disaster movie, depicting a powerful tsunami rushing through a narrow alley in Bulgaria. The water is turbulent and chaotic, with waves crashing violently against the walls and buildings on either side. The alley is lined with old, weathered houses, their facades partially submerged and splintered. The camera angle is low, capturing the full force of the tsunami as it surges forward, creating a sense of urgency and danger. People can be seen running frantically, adding to the chaos. The background features a distant horizon, hinting at the larger scale of the tsunami. A dynamic, sweeping shot from a low-angle perspective, emphasizing the movement and intensity of the event."                                    
-                                    ></video>
-                            </div>
-                            <div class="video-item">
-                                <div class="video-label">LongLive</div>
-                                <video class="video-player" src="videos/long_tsunami.mp4"
-                                    autoplay loop muted playsinline
-                                    data-prompt="A dramatic and dynamic scene in the style of a disaster movie, depicting a powerful tsunami rushing through a narrow alley in Bulgaria. The water is turbulent and chaotic, with waves crashing violently against the walls and buildings on either side. The alley is lined with old, weathered houses, their facades partially submerged and splintered. The camera angle is low, capturing the full force of the tsunami as it surges forward, creating a sense of urgency and danger. People can be seen running frantically, adding to the chaos. The background features a distant horizon, hinting at the larger scale of the tsunami. A dynamic, sweeping shot from a low-angle perspective, emphasizing the movement and intensity of the event."                                    
+                                    data-prompt="A vibrant canal-side market town bursts with color and life — timber-framed merchant buildings with warm amber rooftops face each other across a turquoise waterway where a gentle fountain bubbles, colorful bunting strung between balconies overhead, market stalls and hanging lanterns lining the banks below — the whole scene shimmers in bright midday light, radiating the festive, storybook charm of a thriving fantasy town center."                                    
                                     ></video>
                             </div>
                         </div>
@@ -480,7 +513,7 @@
                 </div>
             </section>
 
-            <section id="ablation-studies" class="section">
+            <!-- <section id="ablation-studies" class="section">
                 <h2>Ablation</h2>
                 <p class="paragraph">Sink Size Ablation: Larger sinks (10-15 frames) reduce degradation and aesthetic drift, but excessive size (18) causes over-preservation and repetition.</p>
                 <div class="video-grid-3x2">
@@ -520,9 +553,9 @@
                         data-prompt="A dynamic shot from behind a white vintage SUV with a black roof rack as it speeds up a steep dirt road surrounded by towering redwood trees on a rugged mountain slope. Dust kicks up from its tires, and the sunlight shines on the SUV, casting a warm glow over the scene. The dirt road curves gently into the distance, with no other vehicles in sight. The trees on either side are dense redwoods, with patches of greenery scattered throughout. The car navigates the curve with ease, making it seem as if it is on a thrilling drive through the rugged terrain. The dirt road is framed by steep hills and mountains, with a clear blue sky above and wispy clouds drifting by. The camera captures the vehicle from the rear, emphasizing its powerful and adventurous journey."                        
                         ></video>
                     </div>
-                </div>
+                </div> -->
 
-                <p class="paragraph add-top-padding">Component Analysis: Deep Sink (DS) and Participative Compression (PC) can be layered on top of the vanilla baseline. The clips below highlight how each component progressively improves long video generation.</p>
+                <!-- <p class="paragraph add-top-padding">Component Analysis: Deep Sink (DS) and Participative Compression (PC) can be layered on top of the vanilla baseline. The clips below highlight how each component progressively improves long video generation.</p>
                 <div class="video-grid-3x1">
                     <div class="video-item">
                         <div class="video-label">Baseline</div>
@@ -543,7 +576,7 @@
                         ></video>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
             <!-- <section id="interactive-prompting" class="section">
                 <h2>Interactive Prompting</h2>
@@ -573,36 +606,36 @@
                     </div>
                 </div>
             </section> -->
-            <section id="interactive-prompting" class="section">
-                <h2>Interactive Prompting</h2>
+            <section id="worldkvfullkv" class="section">
+                <h2>Cases when WorldKV outperforms Full KV</h2>
                 <p class="paragraph">
-                    Deep Forcing can be used with interactive prompting, where users modify prompts during streaming to interactively generate video in real time. Input prompts can be viewed via the "Prompt" button in the video.
+                    In Lingbot-World-Fast, WorldKV sometimes recalls revisited scenes more consistently than full KV-cache attention, likely because restricting attention to viewpoint-relevant chunks avoids the attention dilution caused by attending over many viewpoint-irrelevant caches in the Full KV.
                 </p>
                 <div class="video-grid">
                     <div class="video-item">
-                        <div class="video-label">LongLive (<em>Trained</em>)</div>
-                        <video class="video-player" src="videos/long_casino1.mp4" autoplay loop muted playsinline
-                        data-prompt="0~10s: A realistic video of a Texas Hold'em poker event at a casino. A male player in his late 30s with a medium build, short dark hair, light stubble, and a sharp jawline wears a fitted navy blazer over a charcoal crew-neck tee, dark jeans, and a stainless-steel watch. He sits at a well-lit poker table and tightly grips his hole cards, wearing a tense, serious expression. The table is filled with chips of various colors, the dealer is seen dealing cards, and several rows of slot machines glow in the background. The camera focuses on the player's strained concentration. Wide shot to medium close-up.&#10;&#10;10~20s: A realistic video of a Texas Hold'em poker event at a casino. The same male player - late 30s, medium build, short dark hair, light stubble, sharp jawline - dressed in a fitted navy blazer over a charcoal tee, dark jeans, and a stainless-steel watch - flicks his cards onto the felt, then leans back in the chair with arms spread wide in celebration. The dealer continues dealing to the table as stacks of multicolored chips crowd the surface; slot machines and nearby patrons fill the background. The camera locks onto the player's exuberant reaction. Wide shot to medium close-up.&#10;&#10;20~30s: A realistic video of a Texas Hold'em poker event at a casino. The same late-30s male player, medium build with short dark hair and light stubble, wearing a navy blazer, charcoal tee, dark jeans, and a stainless-steel watch, reveals the winning hand and leans back in celebration while the dealer keeps the game moving. A nearby patron claps and cheers for the winner, amplifying the festive atmosphere. The table brims with colorful chips, with slot machines and other tables behind. The camera centers on the winner's reaction as the applause rises. Wide shot to medium close-up."></video>
+                        <div class="video-label">Full KV</div>
+                        <video class="video-player" src="world_videos/worldkvfullkv/00_R_L_R_L_R_L90_360_full.mp4" autoplay loop muted playsinline
+                        data-prompt="A sun-drenched stable courtyard paved with weathered cobblestones stretches before a sturdy stone-and-timber barn, where a chestnut horse stands quietly in the shade — a young adventurer in a blue tunic faces the open structure, shield on their back, as vast rolling green hills and rocky outcrops unfurl under a bright clear sky, evoking the boundless wonder of an open-world journey."></video>
                     </div>
                     <div class="video-item">
-                        <div class="video-label">Deep Forcing (<em>Training-Free</em>)</div>
-                        <video class="video-player" src="videos/casino_global_sink.mp4" autoplay loop muted playsinline
-                        data-prompt="0~10s: A realistic video of a Texas Hold'em poker event at a casino. A male player in his late 30s with a medium build, short dark hair, light stubble, and a sharp jawline wears a fitted navy blazer over a charcoal crew-neck tee, dark jeans, and a stainless-steel watch. He sits at a well-lit poker table and tightly grips his hole cards, wearing a tense, serious expression. The table is filled with chips of various colors, the dealer is seen dealing cards, and several rows of slot machines glow in the background. The camera focuses on the player's strained concentration. Wide shot to medium close-up.&#10;&#10;10~20s: A realistic video of a Texas Hold'em poker event at a casino. The same male player - late 30s, medium build, short dark hair, light stubble, sharp jawline - dressed in a fitted navy blazer over a charcoal tee, dark jeans, and a stainless-steel watch - flicks his cards onto the felt, then leans back in the chair with arms spread wide in celebration. The dealer continues dealing to the table as stacks of multicolored chips crowd the surface; slot machines and nearby patrons fill the background. The camera locks onto the player's exuberant reaction. Wide shot to medium close-up.&#10;&#10;20~30s: A realistic video of a Texas Hold'em poker event at a casino. The same late-30s male player, medium build with short dark hair and light stubble, wearing a navy blazer, charcoal tee, dark jeans, and a stainless-steel watch, reveals the winning hand and leans back in celebration while the dealer keeps the game moving. A nearby patron claps and cheers for the winner, amplifying the festive atmosphere. The table brims with colorful chips, with slot machines and other tables behind. The camera centers on the winner's reaction as the applause rises. Wide shot to medium close-up."></video>
+                        <div class="video-label">WorldKV (Ours)</div>
+                        <video class="video-player" src="world_videos/worldkvfullkv/00_R_L_R_L_R_L90_360_compressed.mp4" autoplay loop muted playsinline
+                        data-prompt="A sun-drenched stable courtyard paved with weathered cobblestones stretches before a sturdy stone-and-timber barn, where a chestnut horse stands quietly in the shade — a young adventurer in a blue tunic faces the open structure, shield on their back, as vast rolling green hills and rocky outcrops unfurl under a bright clear sky, evoking the boundless wonder of an open-world journey."></video>
                     </div>
                     <div class="video-item">
-                        <div class="video-label">LongLive (<em>Trained</em>)</div>
-                        <video class="video-player" src="videos/long_detective.mp4" autoplay loop muted playsinline
-                        data-prompt="0~10s: A female detective in her 40s, with sharp, intelligent eyes and her brown hair cut in a practical, no-nonsense bob, is standing in her dimly lit office late at night. She is wearing a dark charcoal grey blazer over a simple cream silk blouse. She stares at a large corkboard on the wall, which is covered with a complex web of photos, notes, and newspaper clippings connected by pieces of red string. A single desk lamp casts long shadows across the room, illuminating her thoughtful, determined expression.&#10;&#10;10~20s: A female detective in her 40s, with sharp, intelligent eyes and her brown hair cut in a practical, no-nonsense bob, wearing a dark charcoal grey blazer over a simple cream silk blouse, is studying the case board. Her partner, a younger male detective in his early 30s with a slightly disheveled look, five o'clock shadow, and wearing a slightly rumpled white dress shirt with a loosened dark tie, enters the office. He is holding two steaming Styrofoam cups of coffee and a file folder. He has a tired but resolute look on his face, ready for another long night.&#10;&#10;20~30s: The camera zooms in on the corkboard, moving past the various photos and notes. It settles on a close-up of a single, black-and-white photograph of a key witness, their face etched with worry. A red string is pinned to the photo, leading out of the frame. The shot is grainy and moody, emphasizing the human element and the high stakes of the investigation. The detectives are not visible, only the fragmented clues of the complex puzzle they are trying to solve."></video>
+                        <div class="video-label">Full KV</div>
+                        <video class="video-player" src="world_videos/worldkvfullkv/15_R_L_R_L_R_L90_360_Full_form.mp4" autoplay loop muted playsinline
+                        data-prompt="A cozy log cabin sitting room glows with the amber warmth of a roaring stone fireplace, split logs crackling behind a rough-hewn hearth — a cushioned armchair draped with a soft grey blanket faces a large wood-framed window through which a blizzard-swept pine forest stretches in blue-white silence, a steaming mug resting on a small side table atop a woven rug, the room the perfect refuge from the winter storm outside."></video>
                     </div>
                     <div class="video-item">
-                        <div class="video-label">Deep Forcing (<em>Training-Free</em>)</div>
-                        <video class="video-player" src="videos/detective_global_sink.mp4" autoplay loop muted playsinline
-                        data-prompt="0~10s: A female detective in her 40s, with sharp, intelligent eyes and her brown hair cut in a practical, no-nonsense bob, is standing in her dimly lit office late at night. She is wearing a dark charcoal grey blazer over a simple cream silk blouse. She stares at a large corkboard on the wall, which is covered with a complex web of photos, notes, and newspaper clippings connected by pieces of red string. A single desk lamp casts long shadows across the room, illuminating her thoughtful, determined expression.&#10;&#10;10~20s: A female detective in her 40s, with sharp, intelligent eyes and her brown hair cut in a practical, no-nonsense bob, wearing a dark charcoal grey blazer over a simple cream silk blouse, is studying the case board. Her partner, a younger male detective in his early 30s with a slightly disheveled look, five o'clock shadow, and wearing a slightly rumpled white dress shirt with a loosened dark tie, enters the office. He is holding two steaming Styrofoam cups of coffee and a file folder. He has a tired but resolute look on his face, ready for another long night.&#10;&#10;20~30s: The camera zooms in on the corkboard, moving past the various photos and notes. It settles on a close-up of a single, black-and-white photograph of a key witness, their face etched with worry. A red string is pinned to the photo, leading out of the frame. The shot is grainy and moody, emphasizing the human element and the high stakes of the investigation. The detectives are not visible, only the fragmented clues of the complex puzzle they are trying to solve."></video>
+                        <div class="video-label">WorldKV (Ours)</div>
+                        <video class="video-player" src="world_videos/worldkvfullkv/15_R_L_R_L_R_L90_360_compressed.mp4" autoplay loop muted playsinline
+                        data-prompt="A cozy log cabin sitting room glows with the amber warmth of a roaring stone fireplace, split logs crackling behind a rough-hewn hearth — a cushioned armchair draped with a soft grey blanket faces a large wood-framed window through which a blizzard-swept pine forest stretches in blue-white silence, a steaming mug resting on a small side table atop a woven rug, the room the perfect refuge from the winter storm outside."></video>
                     </div>
                 </div>
             </section>
 
-            <section id="world-model" class="section">
+            <!-- <section id="world-model" class="section">
                 <h2>Application: World Models</h2>
                 <p class="paragraph">
                     Our methods can be applied to world models such as Matrix-Game 2.0, mitigating error accumulation and color drift.
@@ -640,26 +673,26 @@
                         data-prompt="Matrix-Game 2.0 is I2V model."></video>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
-            <section id="causal-forcing" class="section">
-                <h2>On Causal Forcing</h2>
+            <section id="inspatio-world" class="section">
+                <h2>On Inspatio-World</h2>
                 <p class="paragraph">
-                    Our methods can also be applied to Causal Forcing. Deep Sink and Participative Compression effectively mitigate error accumulation and color drift in Causal Forcing.
+                    Our methods can also be applied to Inspatio-World. World Retrieval and World Compression effectively mitigate memory drift in Inspatio-World.
                 </p>
                 <div class="video-grid">
                     <div class="video-item">
-                        <div class="video-label">Causal Forcing</div>
-                        <video class="video-player" src="videos/causal_monster.mp4" autoplay loop muted playsinline
-                        data-prompt="A close-up 3D animated scene of a short, fluffy monster kneeling beside a melting red candle. The monster has large, wide eyes and an open mouth, gazing at the flame with a look of wonder and curiosity. Its soft, fluffy fur contrasts with the warm, dramatic lighting that highlights every detail of its gentle, innocent expression. The pose conveys a sense of playfulness and exploration, as if the creature is discovering the world for the first time. The background features a cozy, warmly lit room with subtle hints of a fireplace and soft furnishings, enhancing the overall atmosphere. The use of warm colors and dramatic lighting creates a captivating and inviting scene."></video>
+                        <div class="video-label">Inspatio-World</div>
+                        <video class="video-player" src="world_videos/inspatio/0-pred_video_rank0.mp4" autoplay loop muted playsinline
+                        data-prompt="The image shows a bartender in a kitchen preparing a drink. He is wearing a black apron and a blue cap, and is standing behind a white countertop with various bottles of alcohol on it. The bartender is pouring a drink into a martini glass with a metal shaker. There are several other bottles of different types of alcohol scattered around the countertop, including bottles of liquor, a coffee maker, and a pitcher. In the background, there is a window with white blinds and a bookshelf with books and other decorative items. The kitchen appears to be well-lit with natural light coming in from the windows."></video>
                     </div>
                     <div class="video-item">
                         <div class="video-label">Ours (<em>Training-Free</em>)</div>
-                        <video class="video-player" src="videos/Deep_causal_monster.mp4" autoplay loop muted playsinline
-                        data-prompt="A close-up 3D animated scene of a short, fluffy monster kneeling beside a melting red candle. The monster has large, wide eyes and an open mouth, gazing at the flame with a look of wonder and curiosity. Its soft, fluffy fur contrasts with the warm, dramatic lighting that highlights every detail of its gentle, innocent expression. The pose conveys a sense of playfulness and exploration, as if the creature is discovering the world for the first time. The background features a cozy, warmly lit room with subtle hints of a fireplace and soft furnishings, enhancing the overall atmosphere. The use of warm colors and dramatic lighting creates a captivating and inviting scene."></video>
+                        <video class="video-player" src="world_videos/inspatio/ours.mp4" autoplay loop muted playsinline
+                        data-prompt="The image shows a bartender in a kitchen preparing a drink. He is wearing a black apron and a blue cap, and is standing behind a white countertop with various bottles of alcohol on it. The bartender is pouring a drink into a martini glass with a metal shaker. There are several other bottles of different types of alcohol scattered around the countertop, including bottles of liquor, a coffee maker, and a pitcher. In the background, there is a window with white blinds and a bookshelf with books and other decorative items. The kitchen appears to be well-lit with natural light coming in from the windows."></video>
                     </div>
                 </div>
-                <div class="video-grid">
+                <!-- <div class="video-grid">
                     <div class="video-item">
                         <div class="video-label">Causal Forcing</div>
                         <video class="video-player" src="videos/causal_santorini.mp4" autoplay loop muted playsinline
@@ -670,7 +703,7 @@
                         <video class="video-player" src="videos/Deep_causal_santorini.mp4" autoplay loop muted playsinline
                         data-prompt="An aerial view of Santorini during the blue hour, capturing the stunning architecture of white Cycladic buildings with blue domes against the twilight sky. The caldera views are breathtaking, with the volcanic cliffs and sea below creating a dramatic contrast. The lighting casts a soft, warm glow, enhancing the serene atmosphere. The image has a dreamy, almost ethereal quality, emphasizing the beauty of the setting. A bird's-eye view with a wide-angle lens, focusing on the intricate details of the buildings and the vast expanse of the caldera."></video>
                     </div>
-                </div>
+                </div> -->
             </section>
                 
                 
@@ -678,18 +711,17 @@
             <section id="conclusion" class="section">
                 <h2>Conclusion</h2>
 
-                <p>In this work, we propose Deep Forcing, a training-free framework that mitigates error accumulation in autoregressive long video generation through two key mechanisms: Deep Sink and Participative Compression. By exploiting the inherent deep attention sink behavior in pre-trained models, our method enables minute-long video generation while preserving visual fidelity and motion dynamics. Extensive experiments across VBench-Long, user studies, and VLM evaluation demonstrate that our training-free framework achieves strong performance competitive with training-based methods.</p>
-
+                <p>In this work, we propose WorldKV, a training-free framework that enables long-term world memory in autoregressive video world models through World Retrieval and World Compression. Experiments show memory fidelity competitive with full KV-cache attention and memory-trained baselines, while preserving real-time inference.</p>
             <div class="citation add-top-padding">
                 <h1 id="citation">Citation</h1>
                 <p> If you use this work or find it helpful, please consider citing: </p>
                 <pre id="codecell0">
-    @article{yi2025deep,
+    <!-- @article{yi2025deep,
     title={Deep Forcing: Training-Free Long Video Generation with Deep Sink and Participative Compression},
     author={Yi, Jung and Jang, Wooseok and Cho, Paul Hyunbin and Nam, Jisu and Yoon, Heeji and Kim, Seungryong},
     journal={arXiv preprint arXiv:2512.05081},
     year={2025}
-    }
+    } -->
                 </pre>
             </div>
         </div>
@@ -912,6 +944,8 @@
                 progressFill.style.width = `${Math.min(Math.max(ratio, 0), 1) * 100}%`;
             };
 
+            const teaserMetrics = video.closest('.subsection-grid') ? createTeaserMetrics(video, wrapper) : null;
+
             video.addEventListener('click', () => {
                 if (video.paused) {
                     video.play();
@@ -972,7 +1006,118 @@
             updateTimeLabel();
             updateProgress();
             syncPlayIcon();
+            teaserMetrics?.start();
             showHint();
+        });
+
+        function parseMetricSeries(value) {
+            if (!value) return [];
+            return value.split(',').map(item => item.trim()).filter(Boolean);
+        }
+
+        function createTeaserMetrics(video, wrapper) {
+            const kvSeries = parseMetricSeries(video.dataset.kvVramSeries);
+            const throughputSeries = parseMetricSeries(video.dataset.throughputSeries);
+            const stepFrames = Number(video.dataset.metricsStepFrames) || 12;
+            const fallbackFps = Number(video.dataset.metricsFps) || 16;
+            const panel = document.createElement('div');
+            panel.className = 'teaser-metrics';
+            panel.innerHTML = `
+                <div class="teaser-metric-row">
+                    <span>KV cache size in VRAM</span>
+                    <strong class="teaser-kv-value">--</strong>
+                </div>
+                <div class="teaser-metric-row">
+                    <span>Throughput per chunk</span>
+                    <strong class="teaser-throughput-value">--</strong>
+                </div>
+            `;
+            wrapper.insertBefore(panel, wrapper.firstElementChild);
+
+            const kvValue = panel.querySelector('.teaser-kv-value');
+            const throughputValue = panel.querySelector('.teaser-throughput-value');
+            let lastChunkIndex = -1;
+            let frameCallbackId = null;
+            let intervalId = null;
+
+            const updateMetrics = (frameNumber) => {
+                const chunkIndex = Math.max(Math.floor(frameNumber / stepFrames), 0);
+                if (chunkIndex === lastChunkIndex) return;
+                lastChunkIndex = chunkIndex;
+                kvValue.textContent = kvSeries[chunkIndex] || kvSeries[kvSeries.length - 1] || '--';
+                throughputValue.textContent = throughputSeries[chunkIndex] || throughputSeries[throughputSeries.length - 1] || '--';
+            };
+
+            const updateFromTime = () => {
+                updateMetrics(Math.floor((video.currentTime || 0) * fallbackFps));
+            };
+
+            const scheduleFrameCallback = () => {
+                if (!video.requestVideoFrameCallback) return false;
+                frameCallbackId = video.requestVideoFrameCallback((now, metadata) => {
+                    const frameNumber = Math.floor((metadata.mediaTime || video.currentTime || 0) * fallbackFps);
+                    updateMetrics(frameNumber);
+                    scheduleFrameCallback();
+                });
+                return true;
+            };
+
+            const start = () => {
+                updateFromTime();
+                if (!scheduleFrameCallback()) {
+                    intervalId = window.setInterval(updateFromTime, 150);
+                }
+            };
+
+            video.addEventListener('seeking', () => {
+                lastChunkIndex = -1;
+                updateFromTime();
+            });
+
+            video.addEventListener('emptied', () => {
+                if (frameCallbackId && video.cancelVideoFrameCallback) {
+                    video.cancelVideoFrameCallback(frameCallbackId);
+                }
+                if (intervalId) {
+                    window.clearInterval(intervalId);
+                }
+            });
+
+            return { start };
+        }
+
+        const teaserVideos = Array.from(document.querySelectorAll('.subsection-grid .video-player'));
+        let syncingTeaserVideos = false;
+
+        function syncTeaserVideos(sourceVideo, action) {
+            if (syncingTeaserVideos) return;
+            syncingTeaserVideos = true;
+            teaserVideos.forEach(video => {
+                if (video === sourceVideo) return;
+                if (Number.isFinite(sourceVideo.currentTime) && Math.abs(video.currentTime - sourceVideo.currentTime) > 0.08) {
+                    try {
+                        video.currentTime = sourceVideo.currentTime;
+                    } catch (e) {}
+                }
+                if (action === 'play' && video.paused) {
+                    video.play().catch(() => {});
+                }
+                if (action === 'pause' && !video.paused) {
+                    video.pause();
+                }
+            });
+            syncingTeaserVideos = false;
+        }
+
+        teaserVideos.forEach(video => {
+            video.addEventListener('play', () => syncTeaserVideos(video, 'play'));
+            video.addEventListener('pause', () => syncTeaserVideos(video, 'pause'));
+            video.addEventListener('seeking', () => syncTeaserVideos(video, 'seek'));
+            video.addEventListener('timeupdate', () => {
+                if (!video.paused) {
+                    syncTeaserVideos(video, 'time');
+                }
+            });
         });
 
         // Comparison slider for 2x2 batches
