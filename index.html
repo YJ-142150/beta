@@ -132,7 +132,7 @@
                         <i class="fa fas fa-file-text main-icon" style="font-size: 60px"></i>
                         <strong class="link-labels-text">Paper</strong>
                     </a></div>
-                <div class="base-col icon-col"><a href='https://github.com/cvlab-kaist/DeepForcing.git' class="link-block">
+                <div class="base-col icon-col"><a href='https://github.com/cvlab-kaist/WorldKV' class="link-block">
                         <i class="fa fa-github main-icon" style="font-size: 60px"></i>
                         <strong class="link-labels-text">Code</strong>
                     </a></div>
@@ -163,6 +163,33 @@
                 <div class="video-grid subsection-grid">
 
                     <div class="video-item">
+                    <div class="video-title">Input Image</div>
+                    <img
+                        class="image-player"
+                        src="04.jpg"
+                        alt="Input image: a yellow duckling swimming on a sunlit pond with water lilies"
+                        data-prompt="A tiny yellow duckling swims away from the viewer across a clear sunlit pond, sending soft concentric ripples through the shallow water as lily pads and blooming pink water lilies float ahead — lush green trees blur along the far bank, sunlight sparkling on the surface, the whole scene radiating gentle warmth, innocence, and the peaceful charm of a quiet garden pond in midsummer."
+                    >
+                    </div>
+
+                    <div class="video-item">
+                    <div class="video-title">WorldKV (Ours)</div>
+                    <video
+                        class="video-player"
+                        src="world_videos/dynamic/04_RLWSRL90_245.mp4"
+                        autoplay
+                        loop
+                        muted
+                        playsinline
+                        data-metrics-step-frames="12"
+                        data-metrics-fps="16"
+                        data-kv-vram-series="1.7 GB, 3.4 GB, 5.1 GB, 6.8 GB, 8.5 GB, 10.2 GB, 11.9 GB, 13.6 GB, 15.3 GB, 17.0 GB, 18.7 GB, 20.4 GB, 22.1 GB, 23.8 GB, 25.5 GB, 27.2 GB, 28.9 GB, 30.6 GB, 32.3 GB, 34.0 GB"
+                        data-throughput-series="8.9 fps, 8.8 fps, 8.6 fps, 8.3 fps, 8.0 fps, 7.9 fps, 7.8 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps"
+                        data-prompt="A tiny yellow duckling swims away from the viewer across a clear sunlit pond, sending soft concentric ripples through the shallow water as lily pads and blooming pink water lilies float ahead — lush green trees blur along the far bank, sunlight sparkling on the surface, the whole scene radiating gentle warmth, innocence, and the peaceful charm of a quiet garden pond in midsummer."
+                    ></video>
+                    </div>
+
+                    <div class="video-item">
                     <div class="video-title">Full KV</div>
                     <video
                         class="video-player"
@@ -180,47 +207,17 @@
                     </div>
 
                     <div class="video-item">
-                    <div class="video-title">WorldKV</div>
+                    <div class="video-title">Sliding Window</div>
                     <video
                         class="video-player"
-                        src="world_videos/dynamic/04_RLWSRL90_245.mp4"
+                        src="world_videos/dynamic/04_RLWSRL90_245_sliding.mp4"
                         autoplay
                         loop
                         muted
                         playsinline
-                        data-metrics-step-frames="12"
-                        data-metrics-fps="16"
-                        data-kv-vram-series="1.7 GB, 3.4 GB, 5.1 GB, 6.8 GB, 8.5 GB, 10.2 GB, 11.9 GB, 13.6 GB, 15.3 GB, 17.0 GB, 18.7 GB, 20.4 GB, 22.1 GB, 23.8 GB, 25.5 GB, 27.2 GB, 28.9 GB, 30.6 GB, 32.3 GB, 34.0 GB"
-                        data-throughput-series="8.9 fps, 8.8 fps, 8.6 fps, 8.3 fps, 8.0 fps, 7.9 fps, 7.8 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps, 7.7 fps"
                         data-prompt="A tiny yellow duckling swims away from the viewer across a clear sunlit pond, sending soft concentric ripples through the shallow water as lily pads and blooming pink water lilies float ahead — lush green trees blur along the far bank, sunlight sparkling on the surface, the whole scene radiating gentle warmth, innocence, and the peaceful charm of a quiet garden pond in midsummer."
                     ></video>
                     </div>
-
-                    <!-- <div class="video-item">
-                    <div class="video-title">LongLive</div>
-                    <video
-                        class="video-player"
-                        src="videos/long_dog.mp4"
-                        autoplay
-                        loop
-                        muted
-                        playsinline
-                        data-prompt="A vibrant and dynamic illustration in the style of a futuristic sci-fi comic, depicting two playful dogs, a Samoyed and a Golden Retriever, running through a neon-lit city at night. The dogs' fur gleams under the vibrant glow of the city's neon lights, casting colorful reflections. They move energetically, tails wagging, with the Samoyed having a fluffy white coat and the Golden Retriever sporting a golden one. The cityscape is filled with towering skyscrapers adorned with flickering neon signs, creating a mesmerizing visual spectacle. The background features blurred outlines of the city's architecture, with hints of glowing streets and distant buildings. The camera angle captures a medium shot of the dogs from a slightly elevated perspective, emphasizing their joyful movements."
-                    ></video>
-                    </div>
-
-                    <div class="video-item">
-                    <div class="video-title">Deep Forcing (<em>Training-Free</em>)</div>
-                    <video
-                        class="video-player"
-                        src="videos/ours_dog.mp4"
-                        autoplay
-                        loop
-                        muted
-                        playsinline
-                        data-prompt="A vibrant and dynamic illustration in the style of a futuristic sci-fi comic, depicting two playful dogs, a Samoyed and a Golden Retriever, running through a neon-lit city at night. The dogs' fur gleams under the vibrant glow of the city's neon lights, casting colorful reflections. They move energetically, tails wagging, with the Samoyed having a fluffy white coat and the Golden Retriever sporting a golden one. The cityscape is filled with towering skyscrapers adorned with flickering neon signs, creating a mesmerizing visual spectacle. The background features blurred outlines of the city's architecture, with hints of glowing streets and distant buildings. The camera angle captures a medium shot of the dogs from a slightly elevated perspective, emphasizing their joyful movements."
-                    ></video>
-                    </div> -->
 
                 </div>
 
@@ -228,7 +225,7 @@
 
             <div class="base-row section">
                 <p class="explain">
-                    <strong>WorldKV</strong> is a training-free framework that enables efficient long-term world memory in autoregressive video world models by combining <strong>World Retrieval</strong> and <strong>World Compression</strong>. <br>
+                    <strong>WorldKV</strong> is a training-free framework that enables efficient world memory in autoregressive video world models by combining <strong>World Retrieval</strong> and <strong>World Compression</strong>. <br>
                     <br>
                     <strong>WorldKV</strong> matches and in some cases exceeds <strong>full KV-cache memory fidelity at roughly 2× the throughput under almost half the KV cache VRAM/RAM footprint</strong> on Matrix-Game 2.0 and LingBot-World-Fast.
                 </p>
@@ -264,7 +261,7 @@
                     <div class="motivation-part">
                         <h3>Efficiency</h3>
                         <p>
-                            Full KV-cache attention preserves long-term memory, but its VRAM footprint quickly exceeds GPU capacity and the quadratically growing attention cost degrades inference speed below real-time. Efficient world memory requires retaining only the chunks that matter for revisits.
+                            Full KV-cache attention preserves long-term memory, but its VRAM footprint quickly exceeds GPU capacity and the dramatically growing attention cost degrades inference speed below real-time. Efficient world memory requires retaining only the chunks that matter for revisits.
                         </p>
                         <div class="motivation-image-grid">
                             <div class="image-content">
@@ -323,7 +320,7 @@
                 <div class="video-grid-3x4">
                     <!-- Row 1 (모델 인디케이터 포함) -->
                     <div class="video-item">
-                        <div class="video-label">Astronut</div>
+                        <div class="video-label">Astronaut</div>
                         <video class="video-player" src="world_videos/dynamic/01_R_L_W_S_R_L90_318.mp4"
                             autoplay loop muted playsinline
                             data-prompt="A lone astronaut in a bulky white spacesuit walks across a vast rust-colored desert plain on a Mars-like world, dust swirling around their boots as distant rocky mountains rise beneath a hazy orange sky — a small futuristic marker stands ahead on the barren terrain, while the low cinematic camera angle follows from behind, evoking quiet isolation, exploration, and the fragile determination of a human traveler crossing an alien frontier."></video>
@@ -349,7 +346,7 @@
                             data-prompt="A white-robed swordsman stands balanced on a glowing golden flying blade above a vast celestial palace complex floating among the clouds, ornate East Asian temple rooftops and gilded towers stretching toward a monumental mountain-like shrine in the distance — mist swirls between suspended pavilions, sunlight glints off curved roofs, and the scene radiates mythic grandeur, martial fantasy, and divine ascent through a heavenly realm."></video>
                     </div>
                     <div class="video-item">
-                        <div class="video-label">Iron Guy</div>
+                        <div class="video-label">Hero</div>
                         <video class="video-player" src="world_videos/dynamic/23_RLWSRL90_245.mp4"
                             autoplay loop muted playsinline
                             data-prompt="A futuristic armored hero flies between towering skyscrapers above a dense modern city, blue jet flames blazing from their hands and boots as glowing cyan panels illuminate the silver exosuit — the camera follows from behind at high altitude, with glass towers, narrow streets, and a distant river receding below, capturing the exhilarating speed and cinematic spectacle of a sci-fi flight over an urban skyline."></video>
@@ -390,7 +387,7 @@
                             data-prompt="A fluffy cream-colored cat walks across a sunlit living room rug beside a glowing fireplace, its body illuminated by warm window light spilling over polished wooden floors — built-in bookshelves, a cushioned armchair, woven baskets, folded blankets, and large white-framed windows surround the cozy domestic scene, creating a peaceful atmosphere of quiet comfort, soft textures, and afternoon warmth."></video>
                     </div>
                     <div class="video-item">
-                        <div class="video-label">Soccer Goal</div>
+                        <div class="video-label">Track</div>
                         <video class="video-player" src="world_videos/dynamic/uni01_L_R_W_S_L_R90_318.mp4"
                             autoplay loop muted playsinline
                             data-prompt="A white metal soccer goal stands at the edge of a vivid green athletic field beside a curving red running track, its slightly sagging net casting thin shadows across the turf — low modern school buildings and dense summer trees line the background beneath a broad hazy sky, the scene bright and open, conveying the calm emptiness of a quiet campus sports ground between games."></video>
@@ -437,29 +434,6 @@
                                     ></video>
                             </div>
                         </div>
-                        <!-- <div class="comparison-slide">
-                            <div class="video-item">
-                                <div class="video-label">WorldKV (Ours)</div>
-                                <video class="video-player" src="world_videos/comparisons/31_ours_cut.mp4"
-                                    autoplay loop muted playsinline
-                                    data-prompt="A lively medieval-style harbor settlement rises along the edge of a mirror-still lake, where wooden docks, stone retaining walls, and a timber-framed workshop cluster beneath a towering watchtower built into the rocky hillside — brilliant autumn trees in shades of red and gold punctuate the shoreline, their reflections shimmering across the water under a vast sky of towering clouds, giving the scene the grand, polished feel of an open-world fantasy game."
-                                    ></video>
-                            </div>
-                            <div class="video-item">
-                                <div class="video-label">Full KV</div>
-                                <video class="video-player" src="world_videos/comparisons/31_fullKV_cut.mp4"
-                                    autoplay loop muted playsinline
-                                    data-prompt="A lively medieval-style harbor settlement rises along the edge of a mirror-still lake, where wooden docks, stone retaining walls, and a timber-framed workshop cluster beneath a towering watchtower built into the rocky hillside — brilliant autumn trees in shades of red and gold punctuate the shoreline, their reflections shimmering across the water under a vast sky of towering clouds, giving the scene the grand, polished feel of an open-world fantasy game."
-                                    ></video>
-                            </div>
-                            <div class="video-item">
-                                <div class="video-label">Sliding Window</div>
-                                <video class="video-player" src="world_videos/comparisons/31_sliding_cut.mp4"
-                                    autoplay loop muted playsinline
-                                    data-prompt="A lively medieval-style harbor settlement rises along the edge of a mirror-still lake, where wooden docks, stone retaining walls, and a timber-framed workshop cluster beneath a towering watchtower built into the rocky hillside — brilliant autumn trees in shades of red and gold punctuate the shoreline, their reflections shimmering across the water under a vast sky of towering clouds, giving the scene the grand, polished feel of an open-world fantasy game."                                    
-                                    ></video>
-                            </div>
-                        </div> -->
                         <div class="comparison-slide">
                             <div class="video-item">
                                 <div class="video-label">WorldKV (Ours)</div>
@@ -480,6 +454,29 @@
                                 <video class="video-player" src="world_videos/comparisons/14_sliding.mp4"
                                     autoplay loop muted playsinline
                                     data-prompt="A sun-drenched suburban home with warm tan stucco walls and a wide white double-car garage faces a broad smooth concrete driveway — manicured shrubs and tropical ornamental grasses line the base of the fence, a tall palm tree rising on the right against a bright partly cloudy sky, the scene radiating the clean, comfortable stillness of a well-kept residential neighborhood on a warm sunny afternoon."                                    
+                                    ></video>
+                            </div>
+                        </div>
+                        <div class="comparison-slide">
+                            <div class="video-item">
+                                <div class="video-label">WorldKV (Ours)</div>
+                                <video class="video-player" src="world_videos/comparisons/new_13_L_R_L_R_L_R_385_ours_cut.mp4"
+                                    autoplay loop muted playsinline
+                                    data-prompt="A wide city boulevard stretches into the distance between towering buildings alive with neon signs and glowing windows — vivid pink and cyan light bleeds across the wet pavement and empty sidewalks, a starry night sky visible above the urban canyon, stylized flat-shaded architecture receding toward a glowing horizon in a vibrant animated cityscape that pulses with electric nocturnal energy."
+                                    ></video>
+                            </div>
+                            <div class="video-item">
+                                <div class="video-label">Full KV</div>
+                                <video class="video-player" src="world_videos/comparisons/new13_L_R_L_R_L_R_385_full_cut.mp4"
+                                    autoplay loop muted playsinline
+                                    data-prompt="A wide city boulevard stretches into the distance between towering buildings alive with neon signs and glowing windows — vivid pink and cyan light bleeds across the wet pavement and empty sidewalks, a starry night sky visible above the urban canyon, stylized flat-shaded architecture receding toward a glowing horizon in a vibrant animated cityscape that pulses with electric nocturnal energy."
+                                    ></video>
+                            </div>
+                            <div class="video-item">
+                                <div class="video-label">Sliding Window</div>
+                                <video class="video-player" src="world_videos/comparisons/new13_seed1_L_R_L_R_L_R_385_sliding18_cut.mp4"
+                                    autoplay loop muted playsinline
+                                    data-prompt="A wide city boulevard stretches into the distance between towering buildings alive with neon signs and glowing windows — vivid pink and cyan light bleeds across the wet pavement and empty sidewalks, a starry night sky visible above the urban canyon, stylized flat-shaded architecture receding toward a glowing horizon in a vibrant animated cityscape that pulses with electric nocturnal energy."                                    
                                     ></video>
                             </div>
                         </div>
@@ -944,7 +941,10 @@
                 progressFill.style.width = `${Math.min(Math.max(ratio, 0), 1) * 100}%`;
             };
 
-            const teaserMetrics = video.closest('.subsection-grid') ? createTeaserMetrics(video, wrapper) : null;
+            // Teaser 영상 위 메트릭 패널 (KV cache size in VRAM / Throughput per chunk).
+            // 다시 켜고 싶으면 아래 SHOW_TEASER_METRICS 값을 true로 바꾸면 됩니다.
+            const SHOW_TEASER_METRICS = false;
+            const teaserMetrics = (SHOW_TEASER_METRICS && video.closest('.subsection-grid')) ? createTeaserMetrics(video, wrapper) : null;
 
             video.addEventListener('click', () => {
                 if (video.paused) {

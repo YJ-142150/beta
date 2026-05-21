@@ -1312,7 +1312,8 @@ pre {
   margin-bottom: 8px;
 }
 
-.video-player {
+.video-player,
+.image-player {
   width: 100%;
   border-radius: 8px;   /* 이미지처럼 모서리 둥글게 하고 싶으면 */
   display: block;
