@@ -1,15 +1,33 @@
 <div align="center">
-<h1>Deep Forcing: Training-Free Long Video Generation with Deep Sink and Participative Compression</h1>
+<h1>WorldKV: Efficient World Memory with World Retrieval and Compression</h1>
 
-[**Jung Yi**](https://yj-142150.github.io/jungyi/) · [**Wooseok Jang**](https://scholar.google.com/citations?user=7cyLEQ0AAAAJ&hl=en/) · [**Paul Hyunbin Cho**](https://openreview.net/profile?id=~Paul_Hyunbin_Cho1)<sup></sup> · [**Jisu Nam**](https://nam-jisu.github.io/)<sup></sup> · [**Heeji Yoon**](https://yoon-heez.github.io/)<sup></sup> · [**Seungryong Kim**](https://cvlab.korea.ac.kr)<sup></sup>
+[**Jung Yi**](https://yj-142150.github.io/jungyi/)<sup>1</sup> · [**Minjae Kim**](https://github.com/kwjames98/)<sup>1</sup> · [**Paul Hyunbin Cho**](https://openreview.net/profile?id=~Paul_Hyunbin_Cho1)<sup>1</sup> · [**Wooseok Jang**](https://woo1726.github.io/)<sup>1</sup> · [**Sangdoo Yun**](https://sangdooyun.github.io/)<sup>2</sup> · [**Seungryong Kim**](https://cvlab.korea.ac.kr)<sup>1</sup>
 
-<sup></sup>KAIST AI&emsp;
+<sup>1</sup>KAIST AI&emsp;<sup>2</sup>Naver AI
 
 
-New! Check Deep Forcing on Interactive Prompting, World Models & Causal Forcing at: [https://cvlab-kaist.github.io/DeepForcing/](https://cvlab-kaist.github.io/DeepForcing/)
+We are currently cleaning up the code and plan to release it in early June.
 
-Code will be released soon.
+</div>
 
+
+
+
+
+<div align="center">
+
+<table>
+<tr><td>[ ] &nbsp;<strong>Implementation on Lingbot-World-Fast</strong></td></tr>
+<tr><td>[ ] &nbsp;<strong>Implementation on Inspatio-World</strong></td></tr>
+<tr><td>[ ] &nbsp;<strong>Implementation on Matrix-Game-2.0</strong></td></tr>
+</table>
+
+</div>
+
+<!-- TODO: Add setup, training, and inference instructions for each implementation above. -->
+
+
+<!-- 
 ---
 
 ## World Model
@@ -44,4 +62,4 @@ Code will be released soon.
       <video src="videos/casino_global_sink.mp4" controls muted playsinline width="360"></video>
     </td>
   </tr>
-</table>
+</table> -->
